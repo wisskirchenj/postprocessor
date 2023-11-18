@@ -23,8 +23,8 @@ const expectedUser = {
 };
 
 test('readUsers correctly reads users from database.csv', () => {
-  const { readUsers } = require('./main');
-  const users = readUsers();
+  const { readCsv } = require('./main');
+  const { users } = readCsv();
   expect(users.length).toBe(100);
   expect(users[0]).toStrictEqual(expectedUser);
 });

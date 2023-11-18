@@ -15,23 +15,26 @@ extractUser = line => {
   return user;
 };
 
-readUsers = () => {
+readCsv = () => {
   const csv = fs.readFileSync('./database.csv', 'utf-8');
   const lines = csv.split('\n');
   const users = lines.slice(1).map(extractUser);
-  return users;
+  return {
+    headers: lines[0], 
+    users: users
+  };
 };
 
-writeHashes = () => {
-  fs.writeFileSync('./hash_database.csv', lines[0]);
+writeHashes = (headers, users) => {
+  fs.writeFileSync('./hash_database.csv', headers);
   users.forEach(user => {
     fs.appendFileSync('./hash_database.csv', `\n${user.id}, ${user.name}, ${user.hash}, ${user.consent}`);
   });
 }
 
-const users = readUsers();
-writeHashes();
+const { headers, users } = readCsv();
+writeHashes(headers, users);
 
 exports.extractUser = extractUser;
-exports.readUsers = readUsers;
+exports.readCsv = readCsv;
 exports.writeHashes = writeHashes;
