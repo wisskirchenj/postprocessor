@@ -8,7 +8,7 @@ extractUser = line => {
     name: lineArray[1],
     password: lineArray[2],
     consent: lineArray[3],
-    hash: function() {
+    hash() {
       const hash = createHash('sha256');
       return hash.update(this.password).digest('hex');
     },
