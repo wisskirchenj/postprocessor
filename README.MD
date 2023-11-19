@@ -20,10 +20,11 @@ Have fun!
 
 ## Project progress
 
-[//]: # (Project was completed on 29.10.23)
+Project was completed on 19.11.23
 
 18.11.23 Project started and Stage 1 completed. Read in a csv-file and parse the data. Output last line for given format.
 
 18.11.23 Stage 2 completed. Transfom the user database csv into a new csv file, where the passwords are replaced by
 SHA256 hashes.
 
+19.11.23 Final Stage 3 completed. Filter out users from the CSV-database with incomplete information. Save hashes as passwords.
