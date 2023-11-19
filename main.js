@@ -8,10 +8,11 @@ extractUser = line => {
     name: lineArray[1],
     password: lineArray[2],
     consent: lineArray[3],
+    hash: function() {
+      const hash = createHash('sha256');
+      return hash.update(this.password).digest('hex');
+    },
   }
-  // Hash the password
-  const hash = createHash('sha256');
-  user.hash = hash.update(user.password).digest('hex');
   return user;
 };
 
@@ -28,7 +29,7 @@ readCsv = () => {
 writeHashes = (headers, users) => {
   fs.writeFileSync('./hash_database.csv', headers);
   users.forEach(user => {
-    fs.appendFileSync('./hash_database.csv', `\n${user.id}, ${user.name}, ${user.hash}, ${user.consent}`);
+    fs.appendFileSync('./hash_database.csv', `\n${user.id}, ${user.name}, ${user.hash()}, ${user.consent}`);
   });
 }
 
